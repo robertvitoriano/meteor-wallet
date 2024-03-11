@@ -1,13 +1,14 @@
 import React, {useState} from "react";
+import { ContactsCollection } from "../api/ContactsCollection";
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [imageUrl, setImageUrl] = useState('');
 
-  const saveContact = (e) =>{
+  const saveContact = async(e) =>{
     e.preventDefault()
-    console.log({name, email, imageUrl})
+   await ContactsCollection.insertAsync({name, imageUrl, email})
     setEmail('')
     setImageUrl('')
     setName('')
