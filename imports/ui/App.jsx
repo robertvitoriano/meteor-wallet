@@ -1,10 +1,16 @@
-import React from "react";
-import { ContactForm } from "./ContactForm";
-import { ContactList } from "./ContactList";
+import React from 'react';
+import {ContactForm} from "./ContactForm";
+import {ContactList} from "./ContactList";
+import {Header} from "./Header";
+
 export const App = () => (
   <div>
-    <h1 className="text-blue-500">Welcome Deployed Meteor Wallet</h1>
-    <ContactForm/>
-    <ContactList/>
+    <Header />
+    <div className="min-h-full">
+      <div className="max-w-4xl mx-auto p-2">
+        <ContactForm />
+        <ContactList />
+      </div>
+    </div>
   </div>
 );
