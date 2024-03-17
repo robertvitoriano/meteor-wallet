@@ -1,19 +1,33 @@
 import React from "react";
-import {ContactsCollection} from "../api/ContactsCollection";
-
+import { Meteor } from 'meteor/meteor'
 export const ContactForm = () => {
   const [name, setName] = React.useState(""); // Formik
   const [email, setEmail] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
-
+  const [errorMessage, setErrorMessage] = React.useState("")
   const saveContact = () => {
-    ContactsCollection.insert({ name, email, imageUrl });
+    Meteor.call("contacts.insert",{name, email, imageUrl},handleContactInsertError)
     setName("");
     setEmail("");
     setImageUrl("");
   }
-
-  return (
+  function handleContactInsertError(error){
+    if(error){
+      setErrorMessage(error.error)
+    }
+  }
+  return (<>
+    {errorMessage && 
+    <>
+    <div className="w-full h-full left-0 top-0 bg-gray-500 opacity-25 absolute flex justify-center items-center"></div>
+    <div className="w-full h-full left-0 top-0 bg-transparent absolute flex justify-center items-center">
+      <div className="p-4 bg-white h-fit flex w-fit flex-col">
+        <span className="text-black text-xl ">{errorMessage}</span>
+        <button className="text-white font-bold p-1 bg-black" onClick={()=> setErrorMessage('')}>Close</button>
+      </div> 
+    </div>
+    </>
+    }
     <form className="mt-6">
       <div className="grid grid-cols-6 gap-6">
         <div className="col-span-6 sm:col-span-6 lg:col-span-2">
@@ -65,5 +79,6 @@ export const ContactForm = () => {
         </button>
       </div>
     </form>
+    </>
   )
 }
