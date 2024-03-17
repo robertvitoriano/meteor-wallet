@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 
-export const ContactItem = memo(({contact, deleteContact}) => {
+export const ContactItem = memo(({contact, archiveContact}) => {
   return (
     <li
       className="py-4 flex items-center justify-between space-x-3"
@@ -25,10 +25,10 @@ export const ContactItem = memo(({contact, deleteContact}) => {
         </div>
       </div>
       <div
-        className="bg-red-500 text-white font-bold px-2 py-1 rounded-md cursor-pointer"
-        onClick={() => deleteContact(contact._id)}
+        className="bg-gray-200 text-white font-bold px-2 py-1 rounded-md cursor-pointer"
+        onClick={() => archiveContact(contact._id)}
       >
-        Remove
+        Archive
       </div>
     </li>
   );

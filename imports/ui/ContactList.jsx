@@ -5,13 +5,13 @@ import { Meteor } from "meteor/meteor";
 import { ContactItem } from "./components/ContactItem";
 import { Loading } from "./components/Loading";
 export const ContactList = () => {
-  const isLoading = useSubscribe("allContacts");
+  const isLoading = useSubscribe("contacts");
   const contacts = useFind(() =>
-    ContactsCollection.find({}, { sort: { createdAt: -1 } })
+    ContactsCollection.find({archived: {$ne: true}}, { sort: { createdAt: -1 } })
   );
 
-  function deleteContact(id) {
-    Meteor.call("contacts.delete", { id: id });
+  function archiveContact(id) {
+    Meteor.call("contacts.archive", { id: id });
   }
 
   return (
@@ -29,7 +29,7 @@ export const ContactList = () => {
             <ContactItem
               key={contact._id}
               contact={contact}
-              deleteContact={deleteContact}
+              archiveContact={archiveContact}
             />
           ))}
         </ul>

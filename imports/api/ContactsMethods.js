@@ -9,11 +9,17 @@ Meteor.methods({
     
     if(!name) throw new Meteor.Error("Name is required");
     
-    return ContactsCollection.insert({ name, email, imageUrl, createdAt: new Date() });
+    return ContactsCollection.insert({ name, email, imageUrl, createdAt: new Date(), archived: false });
   },
   'contacts.delete'({id}){
     check(id, String)
     return ContactsCollection.remove({_id:id});
+  },
+  'contacts.archive'({id}){
+    check(id, String)
+    return ContactsCollection.update({_id:id},{
+      $set:{archived: true}
+    });
   }
 })
 
