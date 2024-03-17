@@ -13,7 +13,7 @@ Meteor.methods({
   },
   'contacts.delete'({id}){
     check(id, String)
-    ContactsCollection.remove({_id:id});
+    return ContactsCollection.remove({_id:id});
   }
 })
 
