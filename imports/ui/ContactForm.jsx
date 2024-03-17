@@ -1,34 +1,45 @@
 import React from "react";
 import { Meteor } from 'meteor/meteor'
+import { ErrorAlert } from "./components/ErrorAlert";
+import { SuccessAlert } from "./components/SuccessAlert";
 export const ContactForm = () => {
-  const [name, setName] = React.useState(""); // Formik
+  const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
-  const [errorMessage, setErrorMessage] = React.useState("")
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [successMessage, setSuccessMessage] = React.useState("")
+
   const saveContact = () => {
-    Meteor.call("contacts.insert",{name, email, imageUrl},handleContactInsertError)
-    setName("");
-    setEmail("");
-    setImageUrl("");
+    Meteor.call("contacts.insert", {name, email, imageUrl}, (errorResponse) =>{
+      if(errorResponse){
+        showError({message: errorResponse.error});
+        return;
+      }
+      showSuccessMessage({ message: "Contact saved." });
+      setEmail("");
+      setName("");
+      setImageUrl("");
+    })
   }
-  function handleContactInsertError(error){
-    if(error){
-      setErrorMessage(error.error)
-    }
+  const showError = ({ message }) => {
+    setErrorMessage(message);
+    setTimeout(() => {
+      setErrorMessage("");
+    }, 5000);
   }
-  return (<>
-    {errorMessage && 
-    <>
-    <div className="w-full h-full left-0 top-0 bg-gray-500 opacity-25 absolute flex justify-center items-center"></div>
-    <div className="w-full h-full left-0 top-0 bg-transparent absolute flex justify-center items-center">
-      <div className="p-4 bg-white h-fit flex w-fit flex-col">
-        <span className="text-black text-xl ">{errorMessage}</span>
-        <button className="text-white font-bold p-1 bg-black" onClick={()=> setErrorMessage('')}>Close</button>
-      </div> 
-    </div>
-    </>
-    }
+
+  const showSuccessMessage = ({ message }) => {
+    setSuccessMessage(message);
+    setTimeout(() => {
+      setSuccessMessage("");
+    }, 5000);
+  }
+
+  return (
     <form className="mt-6">
+    {errorMessage && <ErrorAlert message={errorMessage}/>}
+    {successMessage && <SuccessAlert message={successMessage}/>}
+
       <div className="grid grid-cols-6 gap-6">
         <div className="col-span-6 sm:col-span-6 lg:col-span-2">
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">
@@ -79,6 +90,5 @@ export const ContactForm = () => {
         </button>
       </div>
     </form>
-    </>
   )
 }
