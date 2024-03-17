@@ -27,7 +27,7 @@ export const ContactList = () => {
                   <p className="text-sm font-medium text-gray-500 truncate">{person.email}</p>
                 </div>
               </div>
-              <div className="bg-red-500 text-white font-bold px-2 py-1 rounded-md cursor-pointer" onClick={()=>deleteContact(person._id)}>Delete Contact</div>
+              <div className="bg-red-500 text-white font-bold px-2 py-1 rounded-md cursor-pointer" onClick={()=>deleteContact(person._id)}>Remove</div>
             </li>
           ))}
         </ul>
