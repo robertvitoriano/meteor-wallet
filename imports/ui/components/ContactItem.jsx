@@ -22,6 +22,9 @@ export const ContactItem = memo(({contact, archiveContact}) => {
           <p className="text-sm font-medium text-gray-500 truncate">
             {contact.email}
           </p>
+          <p className="text-sm font-medium text-gray-500 truncate">
+            {contact.walletId}
+          </p>
         </div>
       </div>
       <div
