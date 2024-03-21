@@ -1,0 +1,62 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "allowJs": true,
+    "jsx": "react",
+    "baseUrl": ".",
+    "paths": {
+      "/*": [
+        "./*"
+      ],
+      "meteor/mongo": [
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/local_collection_driver.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/collection.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/connection_options.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/doc_fetcher.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/mongo_driver.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/mongo_utils.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/observe_multiplex.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/oplog_observe_driver.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/oplog_tailing.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/oplog_v2_converter.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/polling_observe_driver.js",
+        "/home/robert/.meteor/packages/mongo/1.16.8/web.browser/remote_collection_driver.js"
+      ],
+      "meteor/reactive-var": [
+        "/home/robert/.meteor/packages/reactive-var/1.0.12/web.browser/reactive-var.js"
+      ],
+      "meteor/es5-shim": [
+        "/home/robert/.meteor/packages/es5-shim/4.8.0/web.browser/client.js",
+        "/home/robert/.meteor/packages/es5-shim/4.8.0/web.browser/console.js",
+        "/home/robert/.meteor/packages/es5-shim/4.8.0/web.browser/cordova.js",
+        "/home/robert/.meteor/packages/es5-shim/4.8.0/web.browser/export_globals.js",
+        "/home/robert/.meteor/packages/es5-shim/4.8.0/web.browser/import_globals.js"
+      ],
+      "meteor/ecmascript": [
+        "/home/robert/.meteor/packages/ecmascript/0.16.8/web.browser/ecmascript.js"
+      ],
+      "meteor/shell-server": [
+        "/home/robert/.meteor/packages/shell-server/0.5.0/web.browser/main.js",
+        "/home/robert/.meteor/packages/shell-server/0.5.0/web.browser/shell-server.js"
+      ],
+      "meteor/hot-module-replacement": [
+        "/home/robert/.meteor/packages/hot-module-replacement/0.5.3/web.browser/hot-api.js",
+        "/home/robert/.meteor/packages/hot-module-replacement/0.5.3/web.browser/client.js",
+        "/home/robert/.meteor/packages/hot-module-replacement/0.5.3/web.browser/server.js"
+      ],
+      "meteor/react-meteor-data": [
+        "/home/robert/.meteor/packages/react-meteor-data/2.7.2/web.browser/index.js",
+        "/home/robert/.meteor/packages/react-meteor-data/2.7.2/web.browser/suspense/index.js"
+      ]
+    }
+  },
+  "typeAcquisition": {
+    "include": [
+      "meteor"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".meteor"
+  ]
+}

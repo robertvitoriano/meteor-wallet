@@ -1,24 +1,38 @@
 import React, {useState} from "react";
 import { Modal } from "./components/Modal";
+import { SelectContact } from "./components/SelectContact";
+import { useSubscribe, useFind } from "meteor/react-meteor-data";
+import { ContactsCollection } from "../api/ContactsCollection";
+import { Loading } from "./components/Loading";
 
 export const Wallet = () => {
   
   const [open, setOpen] = useState(false);
   const [isTransferingMoney, setIsTransferingMoney] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [destinationWallet, setDestinationWallet] = useState('')
+  const [destinationWallet, setDestinationWallet] = useState({})
   const [errorMessage, setErrorMessage] = useState('')
+  
+  const isLoadingContacts = useSubscribe("contacts")
+  const contacts = useFind(() =>
+  ContactsCollection.find({archived: {$ne: true}}, { sort: { createdAt: -1 } }));
+
 
   const wallet = {
     _id: "asdasdasdas",
     balance: 5,
     currency: "USD",
   };
+  
   function addTransaction(){
     console.log({operation: "New transaction", amount, destinationWallet})
   }
+  if(isLoadingContacts()){
+    return <Loading/>
+  }
   return (
     <>
+    {isLoadingContacts()&& <Loading/>}
       <div className="flex font-sans shadow-md my-10">
         <form className="flex-auto p-6">
           <div className="flex flex-wrap">
@@ -45,7 +59,6 @@ export const Wallet = () => {
                   setIsTransferingMoney(false)
                   setOpen(true)
                 }}
-                setOpen={true}
               >
                 Add money
               </button>
@@ -56,7 +69,6 @@ export const Wallet = () => {
                   setIsTransferingMoney(true)
                   setOpen(true)
                 }}
-                setOpen={true}
               >
                 Transfer money
               </button>
@@ -70,22 +82,19 @@ export const Wallet = () => {
       title={isTransferingMoney ? 'Transfer money to other wallet' : 'Add money to your wallet'}
       body={
         <>
-          {isTransferingMoney && <div>
-            <label htmlFor="destinationWallet" className="block text-sm font-medium text-gray-700">
-              Destination wallet
-            </label>
-            <input
-              type="text"
-              id="destinationWallet"
-              value={destinationWallet}
-              onChange={(e) => setDestinationWallet(e.target.value)}
-              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="0.00"
+          {isTransferingMoney && 
+          <div className="mt-2">
+            <SelectContact
+              title="Destination Contact"
+              contacts={contacts}
+              contact={destinationWallet}
+              setContact={setDestinationWallet}
+              open={open}
             />
           </div>}
-          <div>
+          <div className="mt-2">
             <label htmlFor="amount" className="block text-sm font-medium text-gray-700">
-              Name
+              Amount
             </label>
             <input
               type="text"
@@ -103,7 +112,6 @@ export const Wallet = () => {
         type="button"
         className="bg-white border border-indigo-600 rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-indigo-600 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
         onClick={()=> addTransaction}
-        setOpen={true}
       >
         {isTransferingMoney ?'Transfer money': 'Add money'}
       </button>}
