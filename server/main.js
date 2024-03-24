@@ -1,15 +1,15 @@
 import { Meteor } from 'meteor/meteor';
 import SimpleSchema from 'simpl-schema';
-import '../imports/api/ContactsCollection';
-import '../imports/api/TransactionsCollection';
-import '../imports/api/TransactionsMethods';
-import '../imports/api/WalletsCollection';
-import '../imports/api/ContactsMethods';
-import '../imports/api/ContactsPublications'
-import '../imports/api/WalletsPublication';
-import { WalletsCollection } from '../imports/api/WalletsCollection';
+import '../imports/api/collections/ContactsCollection';
+import '../imports/api/collections/TransactionsCollection';
+import '../imports/api/methods/TransactionsMethods';
+import '../imports/api/collections/WalletsCollection';
+import '../imports/api/methods/ContactsMethods';
+import '../imports/api/publications/ContactsPublications'
+import '../imports/api/publications/WalletsPublication';
 
-const walletSchema = new SimpleSchema({
+import { WalletsCollection } from '../imports/api/collections/WalletsCollection';
+const currencySchema = new SimpleSchema({
   balance: {
     type: Number,
     min: 0,
@@ -22,6 +22,12 @@ const walletSchema = new SimpleSchema({
     allowedValues:['USD', 'EUR'],
     defaultValue: 'USD',
   },
+})
+const walletSchema = new SimpleSchema({
+  currencies:{
+    type: Array
+  },
+  "currencies.$":currencySchema,
   createdAt: {
     type: Date,
     defaultValue: new Date(),
@@ -31,8 +37,10 @@ const walletSchema = new SimpleSchema({
 Meteor.startup(async () => {
   if(WalletsCollection.find().count() === 0){
     const walletData = {
-      balance: 1400,
-      currency: 'USD',
+      currencies:[
+        {balance: 58, currency: 'USD'},
+        {balance: 12, currency: 'EUR'}
+      ],
     }
     const cleanWallet = walletSchema.clean(walletData);
     walletSchema.validate(cleanWallet);

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Modal } from "./components/Modal";
 import { SelectContact } from "./components/SelectContact";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
-import { ContactsCollection } from "../api/ContactsCollection";
+import { ContactsCollection } from "../api/collections/ContactsCollection";
 import { Loading } from "./components/Loading";
-import { WalletsCollection } from "../api/WalletsCollection";
+import { WalletsCollection } from "../api/collections/WalletsCollection";
 
 export const Wallet = () => {
   const [open, setOpen] = useState(false);

@@ -5,13 +5,17 @@
     "start": "meteor run",
     "test": "meteor test --once --driver-package meteortesting:mocha",
     "test-app": "TEST_WATCH=1 meteor test --full-app --driver-package meteortesting:mocha",
-    "visualize": "meteor --production --extra-packages bundle-visualizer"
+    "visualize": "meteor --production --extra-packages bundle-visualizer",
+    "quave-eslint": "eslint . --fix",
+    "quave-prettier": "prettier --write \"**/*.js\" \"**/*.jsx\"",
+    "quave-check": "npm run quave-eslint && npm run quave-prettier"
   },
   "dependencies": {
     "@babel/runtime": "^7.23.5",
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
     "autoprefixer": "^10.4.0",
+    "husky": "^4.3.8",
     "meteor-node-stubs": "^1.2.7",
     "postcss": "^8.4.38",
     "postcss-load-config": "^3.1.4",
@@ -26,5 +30,22 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@quave/quave"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git update-index --again"
+    }
+  },
+  "lint-staged": {
+    "*.{js|jsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }

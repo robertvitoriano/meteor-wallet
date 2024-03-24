@@ -1,5 +1,5 @@
 import React from "react";
-import { ContactsCollection } from "../api/ContactsCollection";
+import { ContactsCollection } from "../api/collections/ContactsCollection";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { ContactItem } from "./components/ContactItem";

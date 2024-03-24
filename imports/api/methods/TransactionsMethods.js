@@ -1,8 +1,8 @@
 import { Meteor } from "meteor/meteor";
 import { check } from "meteor/check";
-import { TransactionsCollection } from "./TransactionsCollection";
-import { WalletsCollection } from "./WalletsCollection";
-import { ContactsCollection } from "./ContactsCollection";
+import { TransactionsCollection } from "../collections/TransactionsCollection";
+import { WalletsCollection } from "../collections/WalletsCollection";
+import { ContactsCollection } from "../collections/ContactsCollection";
 Meteor.methods({
   async "transactions.insert"({
     isTransfering,
