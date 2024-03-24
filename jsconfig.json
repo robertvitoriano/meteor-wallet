@@ -88,6 +88,19 @@
         "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doNumberChecks.js",
         "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doStringChecks.js",
         "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/index.js"
+      ],
+      "meteor/matb33:collection-hooks": [
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/client.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/advices.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/collection-hooks.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/find.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/findone.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/insert.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/remove.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/server.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/update.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/upsert.js",
+        "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/users-compat.js"
       ]
     }
   },
