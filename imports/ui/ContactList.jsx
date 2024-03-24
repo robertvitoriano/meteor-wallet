@@ -4,6 +4,7 @@ import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { ContactItem } from "./components/ContactItem";
 import { Loading } from "./components/Loading";
+
 export const ContactList = () => {
   const isLoading = useSubscribe("contacts");
   const contacts = useFind(() =>
@@ -21,10 +22,7 @@ export const ContactList = () => {
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
           Contact List
         </h3>
-        <ul
-          role="list"
-          className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200"
-        >
+        <ul className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200" >
           {contacts.map((contact) => (
             <ContactItem
               key={contact._id}

@@ -1,20 +1,15 @@
 import { Meteor } from "meteor/meteor";
-import { check } from "meteor/check";
 import { TransactionsCollection } from "../collections/TransactionsCollection";
 import { WalletsCollection } from "../collections/WalletsCollection";
 import { ContactsCollection } from "../collections/ContactsCollection";
-Meteor.methods({
-  async "transactions.insert"({
-    isTransfering,
-    sourceWalletId,
-    destinationWalletId,
-    amount,
-  }) {
-    check(isTransfering, Boolean);
-    check(sourceWalletId, String);
-    check(destinationWalletId, String);
-    check(amount, Number);
+import { transactionSchema } from "../schemas/TransacionSchema";
 
+Meteor.methods({
+  async "transactions.insert"(transactionData) {
+
+    transactionSchema.validate(transactionData);
+    const {sourceWalletId, isTransfering, amount, destinationWalletId}= transactionSchema.clean(transactionData);
+    
     if (!sourceWalletId) throw new Meteor.Error("Source Wallet is required");
 
     if (isTransfering && !destinationWalletId) throw new Meteor.Error("Destination wallet is required");

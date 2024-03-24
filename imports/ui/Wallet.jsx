@@ -6,7 +6,7 @@ import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { ContactsCollection } from "../api/collections/ContactsCollection";
 import { Loading } from "./components/Loading";
 import { WalletsCollection } from "../api/collections/WalletsCollection";
-
+import { Meteor } from "meteor/meteor";
 export const Wallet = () => {
   const [open, setOpen] = useState(false);
   const [isTransferingMoney, setIsTransferingMoney] = useState(false);
@@ -23,10 +23,7 @@ export const Wallet = () => {
       { sort: { createdAt: -1 } }
     )
   );
-  const [wallet] = useFind(() =>
-      WalletsCollection.find()
-  )
-
+  const [wallet] = useFind(() => WalletsCollection.find());
 
   function addTransaction() {
     Meteor.call(
@@ -79,7 +76,7 @@ export const Wallet = () => {
                 className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
                 onClick={() => {
                   setIsTransferingMoney(false);
-                  setErrorMessage('');
+                  setErrorMessage("");
                   setOpen(true);
                 }}
               >
