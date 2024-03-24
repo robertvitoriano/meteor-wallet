@@ -6,6 +6,7 @@ import "../imports/api/methods/TransactionsMethods";
 import "../imports/api/methods/ContactsMethods";
 import "../imports/api/publications/ContactsPublications";
 import "../imports/api/publications/WalletsPublication";
+import "../infra/CustomError";
 import { walletSchema } from "/imports/api/schemas/WalletSchema";
 import { WalletsCollection } from "../imports/api/collections/WalletsCollection";
 

@@ -34,9 +34,11 @@ export const Wallet = () => {
         destinationWalletId: destinationWallet?.walletId || "",
         amount: Number(amount),
       },
-      (error) => {
-        if (error) {
-          setErrorMessage(error.error);
+      (errorResponse) => {
+        if (errorResponse) {
+          errorResponse.details?.forEach((error)=>{
+            setErrorMessage(error.message);
+          })
         } else {
           setOpen(false);
           setDestinationWallet({});
