@@ -29,6 +29,7 @@ const ContactsSchema = new SimpleSchema({
   },
   userId: {
     type: String,
+    optional:true,
   },
 });
 

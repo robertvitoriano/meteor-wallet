@@ -29,6 +29,7 @@ const TransactionsSchema = new SimpleSchema({
   },
   userId: {
     type: String,
+    optional:true,
   },
 });
 
