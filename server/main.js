@@ -10,19 +10,32 @@ import '../imports/api/WalletsPublication';
 import { WalletsCollection } from '../imports/api/WalletsCollection';
 
 const walletSchema = new SimpleSchema({
-  balance: Number,
-  currency: String,
-  createdAt: Date,
+  balance: {
+    type: Number,
+    min: 0,
+    required: true,
+    defaultValue: 0,
+  },
+  currency: {
+    type: String,
+    required: true,
+    allowedValues:['USD', 'EUR'],
+    defaultValue: 'USD',
+  },
+  createdAt: {
+    type: Date,
+    defaultValue: new Date(),
+  },
 });
 
 Meteor.startup(async () => {
   if(WalletsCollection.find().count() === 0){
     const walletData = {
-      balance: 15,
+      balance: 1400,
       currency: 'USD',
-      createdAt: new Date(),
     }
-    walletSchema.validate(walletData);
-    WalletsCollection.insert(walletData)
+    const cleanWallet = walletSchema.clean(walletData);
+    walletSchema.validate(cleanWallet);
+    WalletsCollection.insert(cleanWallet)
   }
 });
