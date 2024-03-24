@@ -20,6 +20,7 @@ const WalletsSchema = new SimpleSchema({
   },
   userId: {
     type: String,
+    optional:true,
   },
 });
 
