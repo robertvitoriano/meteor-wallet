@@ -13,6 +13,8 @@ Meteor.startup(async () => {
   if (WalletsCollection.find().count() === 0) {
     const walletData = {
       balance: 150,
+      createdAt: new Date(),
+      userId:'TESTE USER'
     };
     WalletsCollection.insert(walletData);
   } 
