@@ -47,6 +47,47 @@
       "meteor/react-meteor-data": [
         "/home/robert/.meteor/packages/react-meteor-data/2.7.2/web.browser/index.js",
         "/home/robert/.meteor/packages/react-meteor-data/2.7.2/web.browser/suspense/index.js"
+      ],
+      "meteor/aldeed:collection2": [
+        "/home/robert/.meteor/packages/aldeed_collection2/4.0.0/web.browser/collection2.js",
+        "/home/robert/.meteor/packages/aldeed_collection2/4.0.0/web.browser/dynamic.js",
+        "/home/robert/.meteor/packages/aldeed_collection2/4.0.0/web.browser/lib.js",
+        "/home/robert/.meteor/packages/aldeed_collection2/4.0.0/web.browser/main.js",
+        "/home/robert/.meteor/packages/aldeed_collection2/4.0.0/web.browser/static.js"
+      ],
+      "meteor/aldeed:simple-schema": [
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/main.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/SimpleSchema.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/SimpleSchemaGroup.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/ValidationContext.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/clean.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/defaultMessages.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/doValidation.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/expandShorthand.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/humanize.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/regExp.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/clean/AutoValueRunner.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/clean/convertToProperType.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/clean/getPositionsForAutoValue.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/clean/setAutoValues.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/appendAffectedKey.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/dateToDateString.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/forEachKeyAncestor.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/getKeysWithValueInObj.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/getLastPartOfKey.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/getParentOfKey.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/index.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/isEmptyObject.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/isObjectWeShouldTraverse.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/looksLikeModifier.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/utility/merge.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/allowedValuesValidator.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/requiredValidator.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doArrayChecks.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doDateChecks.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doNumberChecks.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/doStringChecks.js",
+        "/home/robert/.meteor/packages/aldeed_simple-schema/1.13.1/web.browser/lib/validation/typeValidator/index.js"
       ]
     }
   },

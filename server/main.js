@@ -7,7 +7,6 @@ import "../imports/api/methods/ContactsMethods";
 import "../imports/api/publications/ContactsPublications";
 import "../imports/api/publications/WalletsPublication";
 import "../infra/CustomError";
-import { walletSchema } from "/imports/api/schemas/WalletSchema";
 import { WalletsCollection } from "../imports/api/collections/WalletsCollection";
 
 Meteor.startup(async () => {
@@ -15,8 +14,6 @@ Meteor.startup(async () => {
     const walletData = {
       balance: 150,
     };
-    const cleanWallet = walletSchema.clean(walletData);
-    walletSchema.validate(cleanWallet);
-    WalletsCollection.insert(cleanWallet);
+    WalletsCollection.insert(walletData);
   } 
 });

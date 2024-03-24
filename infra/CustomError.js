@@ -1,4 +1,4 @@
-import SimpleSchema from "simpl-schema";
+import SimpleSchema from "meteor/aldeed:simple-schema";
 
 SimpleSchema.defineValidationErrorTransform((error) =>{
   const ddpError = new Meteor.Error(error.message);
