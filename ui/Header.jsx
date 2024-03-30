@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoggedUser } from "meteor/quave:logged-user-react";
+import { RoutePaths } from "./RoutePaths";
 export const Header = () => {
   const { loggedUser, isLoadingLoggedUser } = useLoggedUser();
   console.log({ loggedUser, isLoadingLoggedUser });
@@ -20,7 +21,7 @@ export const Header = () => {
               {!loggedUser && !isLoadingLoggedUser && (
                 <button
                   className="text-white hover:underline"
-                  onClick={() => navigate("/sign-up")}
+                  onClick={() => navigate(RoutePaths.ACCESS)}
                 >
                   Sign up
                 </button>
@@ -28,7 +29,7 @@ export const Header = () => {
               {loggedUser && !isLoadingLoggedUser && (
                 <button
                   className="text-white hover:underline"
-                  onClick={() => navigate("/sign-up")}
+                  onClick={() => navigate(RoutePaths.ACCESS)}
                 >
                   Log out
                 </button>
