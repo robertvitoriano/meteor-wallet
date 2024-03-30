@@ -1,9 +1,9 @@
 import React from "react";
-import { ContactsCollection } from "../api/collections/ContactsCollection";
+import { ContactsCollection } from "../../../api/collections/ContactsCollection";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
-import { ContactItem } from "./components/ContactItem";
-import { Loading } from "./components/Loading";
+import { ContactItem } from "../../components/ContactItem";
+import { Loading } from "../../components/Loading";
 
 export const ContactList = () => {
   const isLoading = useSubscribe("contacts");
