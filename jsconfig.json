@@ -101,6 +101,18 @@
         "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/update.js",
         "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/upsert.js",
         "/home/robert/.meteor/packages/matb33_collection-hooks/1.3.1/web.browser/users-compat.js"
+      ],
+      "meteor/accounts-password": [
+        "/home/robert/.meteor/packages/accounts-password/2.4.0/web.browser/password_client.js",
+        "/home/robert/.meteor/packages/accounts-password/2.4.0/web.browser/email_templates.js",
+        "/home/robert/.meteor/packages/accounts-password/2.4.0/web.browser/password_server.js"
+      ],
+      "meteor/quave:logged-user-react": [
+        "/home/robert/.meteor/packages/quave_logged-user-react/1.1.0/web.browser/logged-user-react.js"
+      ],
+      "meteor/quave:logged-user": [
+        "/home/robert/.meteor/packages/quave_logged-user/0.1.0/web.browser/LoggedUserProvider.js",
+        "/home/robert/.meteor/packages/quave_logged-user/0.1.0/web.browser/useLoggedUser.js"
       ]
     }
   },

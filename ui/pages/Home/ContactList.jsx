@@ -8,7 +8,10 @@ import { Loading } from "../../components/Loading";
 export const ContactList = () => {
   const isLoading = useSubscribe("contacts");
   const contacts = useFind(() =>
-    ContactsCollection.find({archived: {$ne: true}}, { sort: { createdAt: -1 } })
+    ContactsCollection.find(
+      { archived: { $ne: true } },
+      { sort: { createdAt: -1 } }
+    )
   );
 
   function archiveContact(id) {
@@ -17,12 +20,12 @@ export const ContactList = () => {
 
   return (
     <div>
-      {isLoading()&& <Loading/>}
+      {isLoading() && <Loading />}
       <div className="mt-10">
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
           Contact List
         </h3>
-        <ul className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200" >
+        <ul className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
           {contacts.map((contact) => (
             <ContactItem
               key={contact._id}
