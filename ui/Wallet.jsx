@@ -2,7 +2,6 @@
 import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
-import { useLoggedUser } from "meteor/quave:logged-user-react";
 
 import { Modal } from "./components/Modal";
 import { SelectContact } from "./components/SelectContact";
@@ -14,12 +13,11 @@ export const Wallet = () => {
   const [open, setOpen] = useState(false);
   const [isTransferingMoney, setIsTransferingMoney] = useState(false);
   const [amount, setAmount] = useState(0);
-  const [destinationWallet, setDestinationWallet] = useState({});
+  const [destinationContact, setDestinationContact] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
 
-  const isLoadingContacts = useSubscribe("contacts");
+  const isLoadingContacts = useSubscribe("userContacts");
   const isLoadingWallets = useSubscribe("userWallet");
-  const { loggedUser } = useLoggedUser();
 
   const contacts = useFind(() =>
     ContactsCollection.find(
@@ -27,9 +25,7 @@ export const Wallet = () => {
       { sort: { createdAt: -1 } }
     )
   );
-  const [wallet] = useFind(() =>
-    WalletsCollection.find({ userId: loggedUser._id })
-  );
+  const [wallet] = useFind(() => WalletsCollection.find());
 
   function addTransaction() {
     Meteor.call(
@@ -37,7 +33,7 @@ export const Wallet = () => {
       {
         isTransfering: isTransferingMoney,
         sourceWalletId: wallet._id,
-        destinationWalletId: destinationWallet?.walletId || "",
+        destinationContactId: destinationContact?._id || "",
         amount: Number(amount),
       },
       (error) => {
@@ -45,7 +41,7 @@ export const Wallet = () => {
           setErrorMessage(error.message);
         } else {
           setOpen(false);
-          setDestinationWallet({});
+          setDestinationContact({});
           setAmount(0);
           setErrorMessage("");
         }
@@ -57,7 +53,6 @@ export const Wallet = () => {
   }
   return (
     <>
-      {isLoadingContacts() && <Loading />}
       <div className="flex font-sans shadow-md my-10">
         <form className="flex-auto p-6">
           <div className="flex flex-wrap">
@@ -117,8 +112,8 @@ export const Wallet = () => {
                 <SelectContact
                   title="Destination Contact"
                   contacts={contacts}
-                  contact={destinationWallet}
-                  setContact={setDestinationWallet}
+                  contact={destinationContact}
+                  setContact={setDestinationContact}
                   open={open}
                 />
               </div>

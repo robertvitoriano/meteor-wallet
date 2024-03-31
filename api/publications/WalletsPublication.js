@@ -5,5 +5,9 @@ Meteor.publish("wallets", function publishAllContacts() {
   return WalletsCollection.find();
 });
 Meteor.publish("userWallet", function publishUserWallet() {
-  return WalletsCollection.find();
+  const { userId } = this;
+  if (!userId) {
+    throw new Meteor.Error("ACCESS DENIED");
+  }
+  return WalletsCollection.find({ userId }, { sort: { createdAt: -1 } });
 });

@@ -6,13 +6,8 @@ import { ContactItem } from "../../components/ContactItem";
 import { Loading } from "../../components/Loading";
 
 export const ContactList = () => {
-  const isLoading = useSubscribe("contacts");
-  const contacts = useFind(() =>
-    ContactsCollection.find(
-      { archived: { $ne: true } },
-      { sort: { createdAt: -1 } }
-    )
-  );
+  const isLoading = useSubscribe("userContacts");
+  const contacts = useFind(() => ContactsCollection.find());
 
   function archiveContact(id) {
     Meteor.call("contacts.archive", { id: id });
