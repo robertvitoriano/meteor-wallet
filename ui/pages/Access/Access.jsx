@@ -65,7 +65,7 @@ export const Access = () => {
     Meteor.loginWithGoogle({ loginStyle: "redirect" });
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-4">
       <h3 className="px-3 py-2 text-lg font-medium">
         {isSignUp ? "Sign Up" : "Sign In"}
       </h3>
@@ -135,7 +135,7 @@ export const Access = () => {
               {!passwordlessLogin && (
                 <div>
                   {isSignUp && (
-                    <div>
+                    <div className="flex flex-col gap-4">
                       <p
                         onClick={toggleAccessForm}
                         className="underline text-blue-600 cursor-pointer hover:no-underline hover:text-blue-400"
@@ -168,22 +168,25 @@ export const Access = () => {
           <Passwordless onEnterToken={onEnterToken} />
           <p
             onClick={() => setPasswordlessLogin(false)}
-            className="underline text-blue-600 cursor-pointer hover:no-underline hover:text-blue-400"
+            className="underline text-blue-600 cursor-pointer hover:no-underline hover:text-blue-400 text-center"
           >
             Go back
           </p>
         </>
       )}
-      <div className="flex flex-col gap-4">
-        <button
-          className="border border-gray rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
-          onClick={loginWithGoogle}
-        >
-          Google
-        </button>
-        <button className="border border-gray rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200">
-          Facebook
-        </button>
+      <div>
+        <div className="font-light text-center mb-4">or</div>
+        <div className="flex flex-col gap-4">
+          <button
+            className="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
+            onClick={loginWithGoogle}
+          >
+            Continue with Google
+          </button>
+          <button className="border border-gray rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200">
+            Continue with Facebook
+          </button>
+        </div>
       </div>
     </div>
   );
