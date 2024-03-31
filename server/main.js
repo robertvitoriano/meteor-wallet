@@ -4,6 +4,7 @@ import "../api/collections/WalletsCollection";
 import "../api/methods/TransactionsMethods";
 import "../api/methods/ContactsMethods";
 import "../api/methods/RolesMethods";
+import "../api/methods/MessagesMethods";
 import "../api/publications/ContactsPublications";
 import "../api/publications/WalletsPublication";
 import "../infra/CustomError";

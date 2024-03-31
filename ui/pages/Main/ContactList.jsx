@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ContactsCollection } from "../../../api/collections/ContactsCollection";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import { ContactItem } from "../../components/ContactItem";
 import { Loading } from "../../components/Loading";
-
+import { useChatBox } from "./ChatContext";
 export const ContactList = () => {
   const isLoading = useSubscribe("userContacts");
   const contacts = useFind(() => ContactsCollection.find());
-
+  const { openChatBox } = useChatBox();
   function archiveContact(id) {
     Meteor.call("contacts.archive", { id: id });
   }
@@ -16,17 +16,19 @@ export const ContactList = () => {
   return (
     <div>
       {isLoading() && <Loading />}
-      <div className="mt-10">
+      <div className="mt-10 relative">
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
           Contact List
         </h3>
         <ul className="mt-4 border-t border-b border-gray-200 divide-y divide-gray-200">
           {contacts.map((contact) => (
-            <ContactItem
-              key={contact._id}
-              contact={contact}
-              archiveContact={archiveContact}
-            />
+            <div onClick={() => openChatBox(contact)}>
+              <ContactItem
+                key={contact._id}
+                contact={contact}
+                archiveContact={archiveContact}
+              />
+            </div>
           ))}
         </ul>
       </div>

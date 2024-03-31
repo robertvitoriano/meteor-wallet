@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       height: {
         "full-page": "90vh",
+        "half-page": "60vh",
       },
     },
   },
