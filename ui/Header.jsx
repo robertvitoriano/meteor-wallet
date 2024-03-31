@@ -23,20 +23,12 @@ export const Header = () => {
         <div className="w-full py-6 flex items-center justify-between border-b border-indigo-500 lg:border-none">
           <div className="flex justify-between items-center w-full">
             <div>
-              <button onClick={() => navigate("/")}>
+              <button onClick={() => navigate(RoutePaths.HOME)}>
                 <span className="sr-only">Meteor Wallet</span>
                 <h1 className="text-md text-white font-bold">Meteor Wallet</h1>
               </button>
             </div>
             <div>
-              {!loggedUser && !isLoadingLoggedUser && (
-                <button
-                  className="text-white hover:underline"
-                  onClick={() => navigate(RoutePaths.ACCESS)}
-                >
-                  Sign up
-                </button>
-              )}
               {loggedUser && !isLoadingLoggedUser && (
                 <button className="text-white hover:underline" onClick={logout}>
                   Log out

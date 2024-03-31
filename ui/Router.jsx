@@ -1,23 +1,33 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home/Home";
+import { Main } from "./pages/Main/Main";
+
 import { NotFound } from "./pages/NotFound/NotFound";
-import { ForgotPassword } from "./pages/ForgotPassword/ForgotPassword";
 import { Access } from "./pages/Access/Access";
 import { RoutePaths } from "./RoutePaths";
 import { LoggedOnly } from "./pages/LoggedOnly";
+import { Home } from "./pages/Home/Home";
+import { AnonymousOnly } from "./pages/AnonymousOnly";
 export const Router = () => {
   return (
     <Routes>
       <Route
         element={
           <LoggedOnly>
-            <Home />
+            <Main />
           </LoggedOnly>
         }
-        path={RoutePaths.HOME}
+        path={RoutePaths.MAIN}
       />
-      <Route element={<Access />} path={RoutePaths.ACCESS} />
+      <Route element={<Home />} path={RoutePaths.HOME} />
+      <Route
+        element={
+          <AnonymousOnly>
+            <Access />
+          </AnonymousOnly>
+        }
+        path={RoutePaths.ACCESS}
+      />
       <Route element={<NotFound />} path="*" />
     </Routes>
   );

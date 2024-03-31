@@ -4,12 +4,12 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useLoggedUser } from "meteor/quave:logged-user-react";
 import { RoutePaths } from "../RoutePaths";
 
-export const LoggedOnly = ({ children }) => {
+export const AnonymousOnly = ({ children }) => {
   const location = useLocation();
-  const { loggedUser, isLoadingLoggedUser } = useLoggedUser();
+  const { loggedUser } = useLoggedUser();
 
-  if (!isLoadingLoggedUser && !loggedUser) {
-    return <Navigate to={RoutePaths.HOME} state={{ from: location }} />;
+  if (loggedUser) {
+    return <Navigate to={RoutePaths.MAIN} state={{ from: location }} />;
   }
   return children;
 };
