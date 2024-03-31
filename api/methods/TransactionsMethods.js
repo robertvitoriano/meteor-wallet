@@ -1,4 +1,5 @@
 import { Meteor } from "meteor/meteor";
+import { Roles } from "meteor/alanning:roles";
 import { TransactionsCollection } from "../collections/TransactionsCollection";
 import { SystemRoles } from "/utils/SystemRoles";
 import { check } from "meteor/check";
@@ -30,7 +31,10 @@ Meteor.methods({
   },
   "transactions.delete"({ transactionId }) {
     check(transactionId, String);
+    const { userId } = this;
+    if (!Roles.userIsInRole(userId, SystemRoles.ADMIN)) {
+      throw new Meteor.Error("Operation not allowed");
+    }
     TransactionsCollection.remove(transactionId);
-    return;
   },
 });
