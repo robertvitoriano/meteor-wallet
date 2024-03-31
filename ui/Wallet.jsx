@@ -1,12 +1,15 @@
 // @ts-nocheck
+import { Meteor } from "meteor/meteor";
 import React, { useState } from "react";
+import { useSubscribe, useFind } from "meteor/react-meteor-data";
+import { useLoggedUser } from "meteor/quave:logged-user-react";
+
 import { Modal } from "./components/Modal";
 import { SelectContact } from "./components/SelectContact";
-import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { ContactsCollection } from "../api/collections/ContactsCollection";
 import { Loading } from "./components/Loading";
 import { WalletsCollection } from "../api/collections/WalletsCollection";
-import { Meteor } from "meteor/meteor";
+
 export const Wallet = () => {
   const [open, setOpen] = useState(false);
   const [isTransferingMoney, setIsTransferingMoney] = useState(false);
@@ -15,7 +18,8 @@ export const Wallet = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const isLoadingContacts = useSubscribe("contacts");
-  const isLoadingWallets = useSubscribe("wallets");
+  const isLoadingWallets = useSubscribe("userWallet");
+  const { loggedUser } = useLoggedUser();
 
   const contacts = useFind(() =>
     ContactsCollection.find(
@@ -23,7 +27,9 @@ export const Wallet = () => {
       { sort: { createdAt: -1 } }
     )
   );
-  const [wallet] = useFind(() => WalletsCollection.find());
+  const [wallet] = useFind(() =>
+    WalletsCollection.find({ userId: loggedUser._id })
+  );
 
   function addTransaction() {
     Meteor.call(

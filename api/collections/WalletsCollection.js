@@ -1,8 +1,8 @@
-import { Mongo } from 'meteor/mongo';
-import SimpleSchema from 'simpl-schema';
-import 'meteor/aldeed:collection2/static';
+import { Mongo } from "meteor/mongo";
+import SimpleSchema from "simpl-schema";
+import "meteor/aldeed:collection2/static";
 
-export const WalletsCollection = new Mongo.Collection('wallets');
+export const WalletsCollection = new Mongo.Collection("wallets");
 
 const WalletsSchema = new SimpleSchema({
   balance: {
@@ -12,15 +12,14 @@ const WalletsSchema = new SimpleSchema({
   },
   currency: {
     type: String,
-    allowedValues: ['USD'],
-    defaultValue: 'USD',
+    allowedValues: ["USD"],
+    defaultValue: "USD",
   },
   createdAt: {
     type: Date,
   },
   userId: {
     type: String,
-    optional:true,
   },
 });
 
