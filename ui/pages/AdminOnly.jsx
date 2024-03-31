@@ -18,7 +18,7 @@ export const AdminOnly = ({ children }) => {
     });
   }, []);
 
-  if (isAdmin === null) <Loading />;
+  if (isAdmin === null) return <Loading />;
 
   if (!isAdmin) {
     return <Navigate to={RoutePaths.MAIN} state={{ from: location }} />;
