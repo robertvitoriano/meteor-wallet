@@ -61,6 +61,9 @@ export const Access = () => {
     navigate(RoutePaths.MAIN);
   };
 
+  const loginWithGoogle = () => {
+    Meteor.loginWithGoogle({ loginStyle: "redirect" });
+  };
   return (
     <div className="flex flex-col">
       <h3 className="px-3 py-2 text-lg font-medium">
@@ -171,6 +174,17 @@ export const Access = () => {
           </p>
         </>
       )}
+      <div className="flex flex-col gap-4">
+        <button
+          className="border border-gray rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
+          onClick={loginWithGoogle}
+        >
+          Google
+        </button>
+        <button className="border border-gray rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-black hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200">
+          Facebook
+        </button>
+      </div>
     </div>
   );
 };

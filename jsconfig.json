@@ -127,6 +127,10 @@
       ],
       "meteor/quave:accounts-passwordless-react": [
         "/home/robert/.meteor/packages/quave_accounts-passwordless-react/2.1.0/web.browser/Passwordless.js"
+      ],
+      "meteor/accounts-google": [
+        "/home/robert/.meteor/packages/accounts-google/1.4.0/web.browser/notice.js",
+        "/home/robert/.meteor/packages/accounts-google/1.4.0/web.browser/google.js"
       ]
     }
   },
