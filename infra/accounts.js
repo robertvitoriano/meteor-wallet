@@ -11,10 +11,6 @@ Accounts.onCreateUser((options, user) => {
 
   return customizedUser;
 });
-Accounts.onLogin((first) => {
-  console.log(first.user.services);
-  console.log(first.user.resume);
-});
 
 Accounts.setDefaultPublishFields({
   ...Accounts._defaultPublishFields.projection,
