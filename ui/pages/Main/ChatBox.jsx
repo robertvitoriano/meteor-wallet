@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { Meteor } from "meteor/meteor";
 import { useChatBox } from "./ChatContext";
+import { useSubscribe, useFind } from "meteor/react-meteor-data";
+import { Loading } from "/ui/components/Loading";
+import { MessagesCollection } from "/api/collections/MessagesCollections";
+
 export const ChatBox = () => {
   const [content, setContent] = useState("");
   const { closeChatBox, receiver, showChatBox } = useChatBox();
 
+  const isLoadingMessages = useSubscribe("getConversationMessages", {
+    receiverId: receiver._id,
+  });
+  const messages = useFind(() => MessagesCollection.find());
+  console.log({ messages });
   function sendMessage() {
     Meteor.call(
       "messages.send",
@@ -18,7 +27,7 @@ export const ChatBox = () => {
       }
     );
   }
-  function getUserMessagesByContact() {}
+
   return (
     <>
       {showChatBox && (
@@ -32,38 +41,20 @@ export const ChatBox = () => {
             </div>
             <p className="text-center text-xl">{receiver.name}</p>
             <div className="flex flex-1 flex-col gap-4">
-              <div className=" bg-gray-400 p-4 flex flex-col gap-8 h-half-page overflow-scroll">
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
+              {!isLoadingMessages() ? (
+                <div className=" bg-gray-400 p-4 flex flex-col gap-8 h-half-page overflow-scroll">
+                  {messages.map((message) => (
+                    <div
+                      className="bg-black p-4 text-white rounded-md flex"
+                      key={message._id}
+                    >
+                      <p>{message.content}</p>
+                    </div>
+                  ))}
                 </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-                <div className="bg-black p-4 text-white rounded-md flex ">
-                  <p>asdamdsoiapdmsapodmas</p>
-                </div>
-              </div>
+              ) : (
+                <Loading />
+              )}
               <div className="flex gap-4">
                 <input
                   type="text"

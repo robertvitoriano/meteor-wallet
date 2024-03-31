@@ -9,10 +9,10 @@ export const App = () => (
   <BrowserRouter>
     <AlertProvider>
       <ChatProvider>
+        <ChatBox />
         <div>
           <Header />
           <Alert />
-          <ChatBox />
           <div className="min-h-full">
             <div className="max-w-4xl mx-auto p-2">
               <Router />

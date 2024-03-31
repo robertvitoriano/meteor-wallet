@@ -7,6 +7,7 @@ import "../api/methods/RolesMethods";
 import "../api/methods/MessagesMethods";
 import "../api/publications/ContactsPublications";
 import "../api/publications/WalletsPublication";
+import "../api/publications/MessagesPublications";
 import "../infra/CustomError";
 import "../infra/accounts";
 import "../infra/roles";
