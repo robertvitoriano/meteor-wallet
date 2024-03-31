@@ -113,6 +113,9 @@
       "meteor/quave:logged-user": [
         "/home/robert/.meteor/packages/quave_logged-user/0.1.0/web.browser/LoggedUserProvider.js",
         "/home/robert/.meteor/packages/quave_logged-user/0.1.0/web.browser/useLoggedUser.js"
+      ],
+      "meteor/quave:alert-react-tailwind": [
+        "/home/robert/.meteor/packages/quave_alert-react-tailwind/3.1.0/web.browser/alert-react-tailwind.js"
       ]
     }
   },

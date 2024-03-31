@@ -2,9 +2,20 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoggedUser } from "meteor/quave:logged-user-react";
 import { RoutePaths } from "./RoutePaths";
+import { Meteor } from "meteor/meteor";
+import { useAlert } from "meteor/quave:alert-react-tailwind";
 export const Header = () => {
   const { loggedUser, isLoadingLoggedUser } = useLoggedUser();
-  console.log({ loggedUser, isLoadingLoggedUser });
+  const { openAlert } = useAlert();
+  const logout = () => {
+    Meteor.logout((error) => {
+      if (error) {
+        openAlert("Error Logging out");
+        return;
+      }
+      navigate(RoutePaths.ACCESS);
+    });
+  };
   const navigate = useNavigate();
   return (
     <header className="bg-indigo-600">
@@ -27,10 +38,7 @@ export const Header = () => {
                 </button>
               )}
               {loggedUser && !isLoadingLoggedUser && (
-                <button
-                  className="text-white hover:underline"
-                  onClick={() => navigate(RoutePaths.ACCESS)}
-                >
+                <button className="text-white hover:underline" onClick={logout}>
                   Log out
                 </button>
               )}
