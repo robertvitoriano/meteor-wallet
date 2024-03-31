@@ -139,12 +139,6 @@ export const Access = () => {
                 Don't have an account yet ? click here to sign up!
               </p>
             )}
-            <p
-              onClick={() => navigate(RoutePaths.FORGOT_PASSWORD)}
-              className="underline text-blue-600 cursor-pointer hover:no-underline hover:text-blue-400"
-            >
-              Forgot your password ?
-            </p>
           </div>
         </div>
       </form>
