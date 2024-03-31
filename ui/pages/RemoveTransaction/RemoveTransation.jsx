@@ -16,7 +16,7 @@ export const RemoveTransaction = () => {
   };
   return (
     <div className="h-full-page flex flex-col justify-center items-center gap-2">
-      <h1 className="text-black text-3xl font-bold">
+      <h1 className="text-black  font-bold text-2xl md:text-3xl">
         Enter the transaction Id to remove
       </h1>
       <form className="mt-6">
