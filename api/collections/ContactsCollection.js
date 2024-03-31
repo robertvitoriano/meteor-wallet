@@ -12,6 +12,9 @@ const ContactsSchema = new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Email,
   },
+  contactId: {
+    type: String,
+  },
   imageUrl: {
     type: String,
     optional: true,
@@ -19,10 +22,6 @@ const ContactsSchema = new SimpleSchema({
   archived: {
     type: Boolean,
     defaultValue: false,
-  },
-  walletId: {
-    type: String,
-    //regEx: SimpleSchema.RegEx.Id
   },
   createdAt: {
     type: Date,

@@ -4,20 +4,21 @@ import { useChatBox } from "./ChatContext";
 import { useSubscribe, useFind } from "meteor/react-meteor-data";
 import { Loading } from "/ui/components/Loading";
 import { MessagesCollection } from "/api/collections/MessagesCollections";
+import { useLoggedUser } from "meteor/quave:logged-user-react";
 
 export const ChatBox = () => {
   const [content, setContent] = useState("");
   const { closeChatBox, receiver, showChatBox } = useChatBox();
+  const { loggedUser } = useLoggedUser();
 
   const isLoadingMessages = useSubscribe("getConversationMessages", {
-    receiverId: receiver._id,
+    receiverId: receiver.contactId,
   });
   const messages = useFind(() => MessagesCollection.find());
-  console.log({ messages });
   function sendMessage() {
     Meteor.call(
       "messages.send",
-      { receiverId: receiver._id, content },
+      { receiverId: receiver.contactId, content },
       (error) => {
         if (error) {
           console.error(error);
@@ -45,7 +46,11 @@ export const ChatBox = () => {
                 <div className=" bg-gray-400 p-4 flex flex-col gap-8 h-half-page overflow-scroll">
                   {messages.map((message) => (
                     <div
-                      className="bg-black p-4 text-white rounded-md flex"
+                      className={`${
+                        message.senderId === loggedUser._id
+                          ? "bg-black  text-white"
+                          : "bg-white text-black"
+                      } p-4 rounded-md flex`}
                       key={message._id}
                     >
                       <p>{message.content}</p>
