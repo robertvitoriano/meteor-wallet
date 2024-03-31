@@ -9,6 +9,7 @@ import { LoggedOnly } from "./pages/LoggedOnly";
 import { Home } from "./pages/Home/Home";
 import { AnonymousOnly } from "./pages/AnonymousOnly";
 import { RemoveTransaction } from "./pages/RemoveTransaction/RemoveTransation";
+import { AdminOnly } from "./pages/AdminOnly";
 export const Router = () => {
   return (
     <Routes>
@@ -22,9 +23,9 @@ export const Router = () => {
       />
       <Route
         element={
-          <LoggedOnly>
+          <AdminOnly>
             <RemoveTransaction />
-          </LoggedOnly>
+          </AdminOnly>
         }
         path={RoutePaths.REMOVE_TRANSACTION}
       />

@@ -35,6 +35,33 @@ TransactionsCollection.before.insert(function (userId, transactionDocument) {
     });
   }
 });
+TransactionsCollection.before.remove(function (userId, transactionDocument) {
+  console.log("Before remove");
+  console.log({ transactionDocument });
+  if (transactionDocument.type === TransactionTypes.TRANSFER) {
+    const sourceWallet = WalletsCollection.findOne(
+      transactionDocument.sourceWalletId
+    );
+    console.log({ sourceWallet });
+
+    if (!sourceWallet) throw new Meteor.Error("Source wallet not found");
+
+    WalletsCollection.update(transactionDocument.sourceWalletId, {
+      $inc: { balance: transactionDocument.amount },
+    });
+  }
+  if (transactionDocument.type === TransactionTypes.ADD) {
+    const sourceWallet = WalletsCollection.findOne({
+      _id: transactionDocument.sourceWalletId,
+    });
+
+    if (!sourceWallet) throw new Meteor.Error("Source wallet not found");
+
+    WalletsCollection.update(transactionDocument.sourceWalletId, {
+      $inc: { balance: -transactionDocument.amount },
+    });
+  }
+});
 const TransactionsSchema = new SimpleSchema({
   type: {
     type: String,
