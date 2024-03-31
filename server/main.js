@@ -7,3 +7,4 @@ import "../api/publications/ContactsPublications";
 import "../api/publications/WalletsPublication";
 import "../infra/CustomError";
 import "../infra/accounts";
+import "../infra/roles";

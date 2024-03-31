@@ -8,6 +8,7 @@ import { RoutePaths } from "./RoutePaths";
 import { LoggedOnly } from "./pages/LoggedOnly";
 import { Home } from "./pages/Home/Home";
 import { AnonymousOnly } from "./pages/AnonymousOnly";
+import { RemoveTransaction } from "./pages/RemoveTransaction/RemoveTransation";
 export const Router = () => {
   return (
     <Routes>
@@ -19,7 +20,22 @@ export const Router = () => {
         }
         path={RoutePaths.MAIN}
       />
-      <Route element={<Home />} path={RoutePaths.HOME} />
+      <Route
+        element={
+          <LoggedOnly>
+            <RemoveTransaction />
+          </LoggedOnly>
+        }
+        path={RoutePaths.REMOVE_TRANSACTION}
+      />
+      <Route
+        element={
+          <AnonymousOnly>
+            <Home />
+          </AnonymousOnly>
+        }
+        path={RoutePaths.HOME}
+      />
       <Route
         element={
           <AnonymousOnly>

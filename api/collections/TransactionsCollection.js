@@ -4,14 +4,12 @@ import "meteor/aldeed:collection2/static";
 
 import { WalletsCollection } from "./WalletsCollection";
 import { Meteor } from "meteor/meteor";
-
-export const TRANSFER_TYPE = "TRANSFER";
-export const ADD_TYPE = "ADD";
+import { TransactionTypes } from "/utils/TransactionTypes;";
 
 export const TransactionsCollection = new Mongo.Collection("transactions");
 
 TransactionsCollection.before.insert(function (userId, transactionDocument) {
-  if (transactionDocument.type === TRANSFER_TYPE) {
+  if (transactionDocument.type === TransactionTypes.TRANSFER) {
     const sourceWallet = WalletsCollection.findOne(
       transactionDocument.sourceWalletId
     );
@@ -25,7 +23,7 @@ TransactionsCollection.before.insert(function (userId, transactionDocument) {
       $inc: { balance: -transactionDocument.amount },
     });
   }
-  if (transactionDocument.type === ADD_TYPE) {
+  if (transactionDocument.type === TransactionTypes.ADD) {
     const sourceWallet = WalletsCollection.findOne({
       _id: transactionDocument.sourceWalletId,
     });
@@ -40,7 +38,7 @@ TransactionsCollection.before.insert(function (userId, transactionDocument) {
 const TransactionsSchema = new SimpleSchema({
   type: {
     type: String,
-    allowedValues: [TRANSFER_TYPE, ADD_TYPE],
+    allowedValues: [TransactionTypes.TRANSFER, TransactionTypes.ADD],
   },
   sourceWalletId: {
     type: String,
