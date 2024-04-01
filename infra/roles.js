@@ -6,7 +6,7 @@ import { SystemRoles } from "/utils/SystemRoles";
 
 Meteor.startup(() => {
   Roles.createRole(SystemRoles.ADMIN, { unlessExists: true });
-  const user = Meteor.users.findOne({ email: "robert@robert.com" });
+  const user = Meteor.users.findOne({ email: "robertvitoriano@gmail.com" });
   if (!user || Roles.userIsInRole(user._id, SystemRoles.ADMIN)) {
     return;
   }

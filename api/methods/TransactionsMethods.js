@@ -4,6 +4,7 @@ import { TransactionsCollection } from "../collections/TransactionsCollection";
 import { SystemRoles } from "/utils/SystemRoles";
 import { check } from "meteor/check";
 import { TransactionTypes } from "/utils/TransactionTypes;";
+import { WalletsCollection } from "../collections/WalletsCollection";
 Meteor.methods({
   async "transactions.insert"(transactionData) {
     const { sourceWalletId, isTransfering, amount, destinationContactId } =
@@ -19,11 +20,14 @@ Meteor.methods({
     if (!userId) {
       throw new Meteor.Error("ACCESS DENIED");
     }
+    const destinationWallet = WalletsCollection.findOne({
+      userId: destinationContactId,
+    });
     return TransactionsCollection.insert({
       type: isTransfering ? TransactionTypes.TRANSFER : TransactionTypes.ADD,
       amount,
       sourceWalletId,
-      destinationContactId: isTransfering ? destinationContactId : null,
+      destinationWalletId: isTransfering ? destinationWallet._id : null,
       createdAt: new Date(),
       archived: false,
       userId,

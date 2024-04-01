@@ -35,7 +35,7 @@ export const Wallet = () => {
       {
         isTransfering: isTransferingMoney,
         sourceWalletId: wallet._id,
-        destinationContactId: destinationContact?._id || "",
+        destinationContactId: destinationContact?.contactId || "",
         amount: Number(amount),
       },
       (error) => {

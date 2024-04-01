@@ -8,7 +8,7 @@ import { RoutePaths } from "./RoutePaths";
 import { LoggedOnly } from "./pages/LoggedOnly";
 import { Home } from "./pages/Home/Home";
 import { AnonymousOnly } from "./pages/AnonymousOnly";
-import { RemoveTransaction } from "./pages/RemoveTransaction/RemoveTransation";
+import { RemoveTransaction } from "./pages/RemoveTransaction/RemoveTransaction";
 import { AdminOnly } from "./pages/AdminOnly";
 export const Router = () => {
   return (

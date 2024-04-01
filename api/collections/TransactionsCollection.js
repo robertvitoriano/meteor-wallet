@@ -13,14 +13,22 @@ TransactionsCollection.before.insert(function (userId, transactionDocument) {
     const sourceWallet = WalletsCollection.findOne(
       transactionDocument.sourceWalletId
     );
-
+    const destintationWallet = WalletsCollection.findOne(
+      transactionDocument.destinationWalletId
+    );
     if (!sourceWallet) throw new Meteor.Error("Source wallet not found");
+
+    if (!destintationWallet)
+      throw new Meteor.Error("Destination wallet not found");
 
     if (sourceWallet.balance < transactionDocument.amount)
       throw new Meteor.Error("Insufficient funds");
 
     WalletsCollection.update(transactionDocument.sourceWalletId, {
       $inc: { balance: -transactionDocument.amount },
+    });
+    WalletsCollection.update(transactionDocument.destinationWalletId, {
+      $inc: { balance: transactionDocument.amount },
     });
   }
   if (transactionDocument.type === TransactionTypes.ADD) {
@@ -36,18 +44,23 @@ TransactionsCollection.before.insert(function (userId, transactionDocument) {
   }
 });
 TransactionsCollection.before.remove(function (userId, transactionDocument) {
-  console.log("Before remove");
-  console.log({ transactionDocument });
   if (transactionDocument.type === TransactionTypes.TRANSFER) {
     const sourceWallet = WalletsCollection.findOne(
       transactionDocument.sourceWalletId
     );
-    console.log({ sourceWallet });
-
+    const destintationWallet = WalletsCollection.findOne(
+      transactionDocument.destinationWalletId
+    );
     if (!sourceWallet) throw new Meteor.Error("Source wallet not found");
+
+    if (!destintationWallet)
+      throw new Meteor.Error("Destination wallet not found");
 
     WalletsCollection.update(transactionDocument.sourceWalletId, {
       $inc: { balance: transactionDocument.amount },
+    });
+    WalletsCollection.update(transactionDocument.destinationWalletId, {
+      $inc: { balance: -transactionDocument.amount },
     });
   }
   if (transactionDocument.type === TransactionTypes.ADD) {
@@ -70,7 +83,7 @@ const TransactionsSchema = new SimpleSchema({
   sourceWalletId: {
     type: String,
   },
-  destinationContactId: {
+  destinationWalletId: {
     type: String,
     optional: true,
   },
