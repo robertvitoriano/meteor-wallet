@@ -35,7 +35,7 @@ export const ChatBox = () => {
         <>
           <div className="bg-white absolute left-0 top-0 flex flex-col gap-8 h-screen w-screen p-4 z-50">
             <div
-              className="font-bold text-3xl absolute left-4 top-4"
+              className="font-bold text-3xl absolute left-4 top-4 cursor-pointer hover:text-red-500"
               onClick={closeChatBox}
             >
               X

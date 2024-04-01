@@ -4,9 +4,12 @@ import { useLoggedUser } from "meteor/quave:logged-user-react";
 import { RoutePaths } from "./RoutePaths";
 import { Meteor } from "meteor/meteor";
 import { useAlert } from "meteor/quave:alert-react-tailwind";
+import { useAppContext } from "./pages/AppContext";
 export const Header = () => {
   const { loggedUser, isLoadingLoggedUser } = useLoggedUser();
   const { openAlert } = useAlert();
+  const { isAdmin } = useAppContext();
+
   const logout = () => {
     Meteor.logout((error) => {
       if (error) {
@@ -28,6 +31,16 @@ export const Header = () => {
                 <h1 className="text-md text-white font-bold">Meteor Wallet</h1>
               </button>
             </div>
+            {isAdmin && loggedUser && (
+              <div className="bg-black rounded-2xl h-full py-2 px-4 flex cursor-pointer hover:bg-red-500">
+                <p
+                  onClick={() => navigate(RoutePaths.REMOVE_TRANSACTION)}
+                  className="underline hover:no-underline text-white font-bold"
+                >
+                  Remove Transaction
+                </p>
+              </div>
+            )}
             <div>
               {loggedUser && !isLoadingLoggedUser && (
                 <button className="text-white hover:underline" onClick={logout}>

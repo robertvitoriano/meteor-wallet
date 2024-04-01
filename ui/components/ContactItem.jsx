@@ -1,9 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useChatBox } from "../pages/Main/ChatContext";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
+export const ContactItem = memo(({ contact, archiveContact }) => {
+  const [showArchiveButton, setShowArchiveButton] = useState(false);
+  const { openChatBox } = useChatBox();
 
-export const ContactItem = memo(({contact, archiveContact}) => {
   return (
     <li
       className="py-4 flex items-center justify-between space-x-3"
+      onMouseEnter={() => setShowArchiveButton(true)}
+      onMouseLeave={() => setShowArchiveButton(false)}
     >
       <div className="min-w-0 flex-1 flex items-center space-x-3">
         <div className="flex-shrink-0">
@@ -19,6 +26,7 @@ export const ContactItem = memo(({contact, archiveContact}) => {
           <p className="text-sm font-medium text-gray-900 truncate">
             {contact.name}
           </p>
+
           <p className="text-sm font-medium text-gray-500 truncate">
             {contact.email}
           </p>
@@ -27,12 +35,19 @@ export const ContactItem = memo(({contact, archiveContact}) => {
           </p>
         </div>
       </div>
-      <div
-        className="bg-gray-200 text-white font-bold px-2 py-1 rounded-md cursor-pointer"
-        onClick={() => archiveContact(contact._id)}
-      >
-        Archive
-      </div>
+      {showArchiveButton && (
+        <div
+          className="bg-gray-200 text-white font-bold px-2 py-1 rounded-md cursor-pointer hover:bg-red-500"
+          onClick={() => archiveContact(contact._id)}
+        >
+          Archive
+        </div>
+      )}
+      <FontAwesomeIcon
+        icon={faComments}
+        onClick={() => openChatBox(contact)}
+        className="cursor-pointer text-3xl hover:text-indigo-500 "
+      />
     </li>
   );
 });
